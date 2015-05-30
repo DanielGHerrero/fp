@@ -7,14 +7,21 @@ public class Calculator {
 	 * este metodo calcula el seno de un angulo
 	 */
 	static Double sin(double n) {
-		return null;
+		double seno=0;
+		seno=Math.sin(n*2.0*Math.PI/360);
+		return seno;
 	}
 
 	/*
 	 * Escribir todos los números del number al 0 de step en step.
 	 */
 	static int[] stepThisNumber(int number, int step) {
-		return null;
+		int[] result = null;
+		for(int cont = 0;cont<number;cont++){
+			number=number-step;
+			result[cont]=number;
+		}
+		return result;
 	}
 
 	/*
@@ -22,7 +29,12 @@ public class Calculator {
 	 * divisores que tiene.
 	 */
 	static int[] divisors(int n) {
-		return null;
+		int rest[] = null;
+		for(int cont=0;cont<n;cont++){
+			if(n%cont==0)
+				rest[cont]=cont;
+		}
+		return rest;
 	}
 	
 	/*
