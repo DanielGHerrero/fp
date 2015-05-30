@@ -1,27 +1,39 @@
 package fp;
 
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Calculator {
 	/*
 	 * este metodo calcula el seno de un angulo
 	 */
 	static Double sin(double n) {
-		double seno=0;
-		seno=Math.sin(n*2.0*Math.PI/360);
-		return seno;
+		double x = Math.toRadians(n);
+		return (Math.ceil(Math.sin (x)*10))/10 ;
 	}
 
 	/*
 	 * Escribir todos los números del number al 0 de step en step.
 	 */
 	static int[] stepThisNumber(int number, int step) {
-		int[] result = null;
-		for(int cont = 0;cont<number;cont++){
+		ArrayList<Integer> numbers = new ArrayList<Integer>();
+		
+		while (number> step){
 			number=number-step;
-			result[cont]=number;
+			numbers.add(number);
 		}
-		return result;
+		
+		//int[] numbs = numbers.toArray(new int[numbers.size()]);
+		
+		int[] numbs = new int[numbers.size()];
+		    Iterator<Integer> iterator = numbers.iterator();
+		    for (int i = 0; i < numbs.length; i++)
+		    {
+		        numbs[i] = iterator.next().intValue();
+		    }
+		
+		return numbs;
 	}
 
 	/*
@@ -29,21 +41,36 @@ public class Calculator {
 	 * divisores que tiene.
 	 */
 	static int[] divisors(int n) {
-		int rest[] = null;
-		for(int cont=0;cont<n;cont++){
-			if(n%cont==0)
-				rest[cont]=cont;
+		ArrayList<Integer> numbers = new ArrayList<Integer>();
+		int [] nums = null;
+		if(n == 0){
+			numbers = null;
+		}else{
+		int x=n;
+		for (int y=0;y<n;y++){
+			if (n%x==0) numbers.add(x);
+		x--;
+		
 		}
-		return rest;
-	}
+		nums = new int [numbers.size()];
+		for(int cont = 0; cont < numbers.size(); cont++){
+			nums [cont] = numbers.get(cont);
+			}
+		}
+	return nums;
+}
 	
 	/*
 	 * Toma como parámetros dos listas. La primera con los 6 números de una
 	 * apuesta de la primitiva, y la segunda con los 6 números ganadores. La
 	 * función debe devolver el número de aciertos.
 	 */
-	static Integer checkMyBet(List<Integer> apuesta, List<Integer> aciertos) {
-		return null;
+	static Integer checkMyBet(List<Integer> bet, List<Integer> hits) {
+		if (bet==null && hits==null) return 0;
+		int resp=0;
+		for (int x=0;x<hits.size();x++)
+	        if(hits.get(x).equals(bet.get(x))) resp++;
+	return resp;
 	}
 
 	/*
@@ -51,8 +78,37 @@ public class Calculator {
 	 * mostrar: cincuenta y seis
 	 */
 	static String speakToMe(int n) {
-		return null;
+		
+		 String[] unidades = { "Cero", "Uno", "Dos", "Tres",
+		            "Cuatro", "Cinco", "Seis", "Siete", "Ocho", "Nueve", "Diez",
+		            "Once", "Doce", "Trece", "Catorce", "Quince", "Dieciseis",
+		            "Diecisiete", "Dieciocho", "Diecinueve", "Veinte" };
+
+		 String[] decenas = { "Venti", "Treinta", "Cuarenta",
+		            "Cincuenta", "Sesenta", "Setenta", "Ochenta", "Noventa" };
+		 
+		 String[] unidades1 = { "cero", "uno", "dos", "tres",
+		            "cuatro", "cinco", "seis", "siete", "ocho", "nueve"};
+		String resp="";
+		int x=0;
+		if(n>=0 && n<=20)
+			resp = unidades[n];
+		if(n>20 && n<=29){
+			x=n%10;
+			resp = decenas[0]+unidades1[x];
+		}
+		if(n>29){
+			x=n%10;
+			n=n/10;
+			n=n-2;
+			if(x!=0)
+				resp = decenas[n] + " y " + unidades1[x];
+			else 
+				resp = decenas[n];
+		}
+		return resp;
 	}
+
 	
 	/*
 	 * este metodo devuelve cierto si el año de la fecha es bisiesto fecha
