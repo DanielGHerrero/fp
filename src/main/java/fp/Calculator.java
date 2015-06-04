@@ -79,7 +79,7 @@ public class Calculator {
 	 */
 	static String speakToMe(int n) {
 		
-		 String[] unidades = { "Cero", "Uno", "Dos", "Tres",
+		 String[] numbers20 = { "Cero", "Uno", "Dos", "Tres",
 		            "Cuatro", "Cinco", "Seis", "Siete", "Ocho", "Nueve", "Diez",
 		            "Once", "Doce", "Trece", "Catorce", "Quince", "Dieciseis",
 		            "Diecisiete", "Dieciocho", "Diecinueve", "Veinte" };
@@ -87,28 +87,28 @@ public class Calculator {
 		 String[] decenas = { "Venti", "Treinta", "Cuarenta",
 		            "Cincuenta", "Sesenta", "Setenta", "Ochenta", "Noventa" };
 		 
-		 String[] unidades1 = { "cero", "uno", "dos", "tres",
+		 String[] unidades = { "cero", "uno", "dos", "tres",
 		            "cuatro", "cinco", "seis", "siete", "ocho", "nueve"};
 		String resp="";
 		int x=0;
 		if(n>=0 && n<=20)
-			resp = unidades[n];
+			resp = numbers20[n];
 		if(n>20 && n<=29){
 			x=n%10;
-			resp = decenas[0]+unidades1[x];
+			resp = decenas[0]+unidades[x];
 		}
 		if(n>29){
 			x=n%10;
 			n=n/10;
 			n=n-2;
 			if(x!=0)
-				resp = decenas[n] + " y " + unidades1[x];
+				resp = decenas[n] + " y " + unidades[x];
 			else 
 				resp = decenas[n];
 		}
 		return resp;
+	
 	}
-
 	
 	/*
 	 * este metodo devuelve cierto si el año de la fecha es bisiesto fecha
